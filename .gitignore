@@ -1,0 +1,5 @@
+# Vim
+*.swp
+*.dump
+bin/
+.DS_Store

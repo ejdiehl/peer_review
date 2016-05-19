@@ -1,0 +1,1 @@
+- database: métodos para adicionar no banco foram movidos para add(), usando overload
