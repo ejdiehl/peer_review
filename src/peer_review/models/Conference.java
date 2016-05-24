@@ -42,6 +42,10 @@ public class Conference {
 		return null;
 	}
 	
+	public String getInitials() {
+		return this.initials;
+	}
+	
 	public ArrayList<Article> getRejectedArticles() {
 		// TODO: Implement
 		return null;

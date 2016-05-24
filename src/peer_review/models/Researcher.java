@@ -6,11 +6,11 @@ public class Researcher {
 	private int id;
 	private String name;
 	private University affiliation;
-	private ArrayList<ResearchTopic> researchTopic;
+	private ArrayList<ResearchTopic> researchTopics;
 	public ArrayList<Article> allocatedArticles;
 	
 	public ArrayList<ResearchTopic> getResearchTopics(){
-		return researchTopic;
+		return researchTopics;
 	}
 	
 	public University getUniversity(){
@@ -33,7 +33,7 @@ public class Researcher {
 		this.id = id;
 		this.name = name;
 		this.affiliation = affiliation;
-		this.researchTopic = researchTopic;
+		this.researchTopics = researchTopic;
 		this.allocatedArticles = allocatedArticles;
 		
 	}
