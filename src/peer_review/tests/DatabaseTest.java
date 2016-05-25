@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import peer_review.data.Database;
 import peer_review.models.Conference;
+import peer_review.models.ResearchTopic;
+import peer_review.models.University;
 import peer_review.models.Article;
 
 public class DatabaseTest {
@@ -32,11 +34,11 @@ public class DatabaseTest {
 	
 	@Test
 	public void testadd() {
-		//database.add(new Conference());
-		assertEquals(database.getConferences().size(), 1);
+		database.add(new University("foo"));
+		assertEquals(database.getUniversities().size(), 1);
 		
-		//database.add(new Article());
-		assertEquals(database.getArticles().size(), 1);
+		database.add(new ResearchTopic("bar"));
+		assertEquals(database.getResearchTopics().size(), 1);
 	}
 	
 }
