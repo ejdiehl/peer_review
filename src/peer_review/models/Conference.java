@@ -18,24 +18,61 @@ public class Conference {
 		this.coordinator = coordinator;
 	}
 
-	public int getLowestSubmittedArticleID() {
-		// TODO: Implement
-		return -1;
+	public Article getLowestIDSubmittedArticle() {
+		int size = articlesSubmitted.size();
+		int i;
+		Article smallestIDArticle = articlesSubmitted.get(0);
+		
+		for (i=1;i<size;i++) {
+			if (articlesSubmitted.get(i).getID() < smallestIDArticle.getID()) {
+				smallestIDArticle = articlesSubmitted.get(i);
+			}
+		}
+		return smallestIDArticle;
 	}
 
 	public ArrayList<Researcher> getCandidateReviewers(Article article) {
-		// TODO: Implement
-		return null;
+		ArrayList<Researcher> candidates = null;
+		Researcher possibleCandidate;
+		int i;
+		int size = committeeMembers.size();
+		
+		for (i=0;i<size;i++) {
+			possibleCandidate = committeeMembers.get(i);
+			
+			if (article.getAuthor() != possibleCandidate && article.getAuthorUniversity() != possibleCandidate.getUniversity() && !(possibleCandidate.getResearchTopics().contains(article.getResearchTopic())) && !(article.isResearcherAllocated(possibleCandidate))) {
+				candidates.add(possibleCandidate);
+			}
+		}
+		
+		return candidates;
 	}
 
 	public ArrayList<Researcher> sortReviewers(ArrayList<Researcher> researchCandidates) {
-		// TODO: Implement
-		return null;
+		ArrayList<Researcher> sortedResearchers = null;
+		Researcher researcherWithLeastArticles = researchCandidates.get(0);
+		int i;
+		
+		while (researchCandidates.size() > 0) {
+			for (i=0;i<researchCandidates.size();i++) {
+				if (researchCandidates.get(i).getAlocatedArticles().size() < researcherWithLeastArticles.getAlocatedArticles().size()) {
+					researcherWithLeastArticles = researchCandidates.get(i);
+				} else if (researchCandidates.get(i).getAlocatedArticles().size() == researcherWithLeastArticles.getAlocatedArticles().size()) {
+					if (researchCandidates.get(i).getID() < researcherWithLeastArticles.getID()) {
+						researcherWithLeastArticles = researchCandidates.get(i);
+					}
+				}
+			}
+			sortedResearchers.add(researcherWithLeastArticles);
+			researchCandidates.remove(researcherWithLeastArticles);
+		}
+		
+		return sortedResearchers;
 	}
 
-	public Article allocateArticle(Article lowestIdSubmittedArticle, Researcher firstSortedResearcher) {
-		// TODO: Implement
-		return null;
+	public Article allocateArticle(Article lowestIDSubmittedArticle, Researcher firstSortedResearcher) {
+		lowestIDSubmittedArticle.allocateReviewer(firstSortedResearcher);
+		return lowestIDSubmittedArticle;
 	}
 
 	public ArrayList<Article> getAcceptedArticles() {

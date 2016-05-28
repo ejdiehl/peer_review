@@ -19,6 +19,10 @@ public class Article {
 	public University getAuthorUniversity() {
 		return author.getUniversity();
 	}
+	
+	public Researcher getAuthor() {
+		return author;
+	}
 
 	public ResearchTopic getResearchTopic() {
 		return researchTopic;
