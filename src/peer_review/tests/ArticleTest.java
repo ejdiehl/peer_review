@@ -34,9 +34,13 @@ public class ArticleTest {
 		authorAllocatedArticles = new ArrayList<Article>();
 		// TODO: Need to populate this
 		articleReviewers = new ArrayList<Researcher>();
+		
 
 		conferenceCoordinator = new Researcher(2, "Coordinator", authorUniversity, authorResearchTopics,
 				authorAllocatedArticles);
+		articleReviewers.add(conferenceCoordinator);
+		articleReviewers.add(conferenceCoordinator);
+		articleReviewers.add(conferenceCoordinator);
 		author = new Researcher(1, "Jonn", authorUniversity, authorResearchTopics, authorAllocatedArticles);
 		articleConference = new Conference("ConfName", authorAllocatedArticles, authorAllocatedArticles,
 				articleReviewers, conferenceCoordinator);
@@ -87,7 +91,12 @@ public class ArticleTest {
 		// TODO: Test if a non-allocated Researcher is false
 		// assertFalse(article.isResearcherAllocated(reviewer2));
 		// Test if numberOfReviewers returns 1
-		assertTrue(article.numberOfReviewers() == 1);
+		assertTrue(article.numberOfReviewers() == 3);
+	}
+	
+	@Test
+	public void testNumberOfReviewers(){
+		assertTrue(article.numberOfReviewers() == 3);
 	}
 
 }
